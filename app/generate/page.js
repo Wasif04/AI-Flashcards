@@ -2,9 +2,9 @@
 import { useState } from "react"
 import { useUser } from "@clerk/nextjs"
 import { useRouter } from "next/navigation"
-import { collection, getDoc, writeBatch } from "firebase/firestore"
 import { Container, Box, Typography, Paper, TextField, Button, Grid, CardActionArea, Card, CardContent, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material"
-
+import { db } from "@/firebase"
+import { doc, getDoc, collection, setDoc, writeBatch } from "firebase/firestore"
 
 export default function Generate() {
 
@@ -14,7 +14,7 @@ export default function Generate() {
     const [text, setText] = useState('')
     const [name, setName] = useState('')
     const [open, setOpen] = useState(false)
-    const router = useRouter
+    const router = useRouter()
 
     const handleSubmit=async ()=>{
 
@@ -32,10 +32,10 @@ export default function Generate() {
     }
 
     const handleOpen = () =>{
-        setOpenI(true)
+        setOpen(true)
     }
     const handleClose = () =>{
-        setOpenI(false)
+        setOpen(false)
     }
 
     const saveFlashcards = async () =>{

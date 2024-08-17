@@ -37,7 +37,7 @@ You are a flashcard creator, your task is to generate concise, clear, and effect
 8. **User Interaction:**
    - Encourage active recall by framing questions that require the user to think and retrieve information, rather than simply recognizing it.
    - Design flashcards in a way that promotes spaced repetition, helping users to review content at optimal intervals for memory retention.
-
+9. Only generate 10 flashcards.
 By adhering to these guidelines, you will create flashcards that are not only informative but also highly effective in helping users learn and retain information on the given topic.
 
 Return in the following JSON format
@@ -50,10 +50,10 @@ Return in the following JSON format
 `;
 
 export async function POST(req){
-    const openai = OpenAI()
+    const openai = new OpenAI()
     const data = await req.text()
 
-    const completion = await openai.chat.completion.create({
+    const completion = await openai.chat.completions.create({
         messages:[
             {role:'system', content:systemPrompt},
             {role:'user', content:data},
@@ -61,6 +61,8 @@ export async function POST(req){
         model: "gpt-4o",
         response_format:{type: 'json_object'},
     })
+
+    console.log(completion.choices[0].message.content)
     const flashcards = JSON.parse(completion.choices[0].message.content)
-    return NextResponse.json(flashcards.flashcard)
+    return NextResponse.json(flashcards.flashcards)
 }

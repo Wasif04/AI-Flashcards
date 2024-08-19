@@ -32,24 +32,50 @@ export default function Home() {
     }
   }
   return (
-    <Container maxWidth="100vw">
+    // Need to change style to sx for more scalability, only temp solution for now
+
+    <Container maxWidth="100vw" style={{ 
+      minHeight: '100vh', 
+      padding: 0,
+      margin: 0, 
+      background: 'linear-gradient(180deg, #a1c4fd, #c2e9fb)',
+      display: 'flex', 
+      flexDirection: 'column',
+      }}>
       <Head>
         <title>Flashcard SaaS</title>
         <meta name="description" content="Create flashcard from your text" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
       </Head>
 
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="sticky"   sx={{
+        top: 0, 
+        backgroundColor: '#0d47a1', // Dark blue color
+        minHeight: '56px', // Reduced height
+        zIndex: 1100, // Ensure it stays above other content
+        boxShadow: 3, // Add a slight shadow for depth
+      }}>
+        <Toolbar sx={{ minHeight: '56px' }}>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             Flashcard SaaS
           </Typography>
           <SignedOut>
-            <Button color="inherit" href="/sign-in">
-              {" "}
+            <Button color="inherit" href="/sign-in" sx={{
+              '&:hover': {
+                backgroundColor: '#1976d2', // Lighter blue on hover
+                color: '#ffffff',
+              },
+            }}>
+              
               Login
             </Button>
-            <Button color="inherit" href="/sign-up">
-              {" "}
+            <Button color="inherit" href="/sign-up" sx={{
+              '&:hover': {
+                backgroundColor: '#1976d2', // Lighter blue on hover
+                color: '#ffffff',
+              },
+            }}>
+              
               Sign up
             </Button>
           </SignedOut>
@@ -65,70 +91,79 @@ export default function Home() {
           my: 4,
         }}
       >
-        <Typography variant="h2" gutterBottom>
-          Welcome to Flashcard SaaS
+        <Typography variant="h2" gutterBottom sx={{
+            fontFamily: '"Montserrat", sans-serif', // Apply Montserrat font
+            fontWeight: 700, // Bold font weight
+            fontSize: '3rem', // Increase font size
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', // Add slight shadow
+          }}>
+          Unlock Smarter Learning with Memora AI
         </Typography>
         <Typography variant="h5" gutterBottom>
           {"  "}
-          The easiest way to make flashcards from your text
+          Transform your notes into dynamic flashcards in seconds.
         </Typography>
-        <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+        <Button variant="contained" color="primary" sx={{ mt: 2 }} href="/generate" >
           Get Started
         </Button>
       </Box>
+      
       <Box sx={{ my: 6 }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom align="center">
           Features
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom align="center">
               Easy Text Input
             </Typography>
-            <Typography>
+            <Typography align="center">
               {"  "}
-              Simply input your text and let our software do the rest. Creating
-              flashcards has never been easier.
+              Effortlessly convert your notes into flashcards. Just paste your text, and we’ll handle the rest, saving you time and boosting your study efficiency.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom align="center">
               Smart Flashcards
             </Typography>
-            <Typography>
+            <Typography align="center">
               {"  "}
-              Our AI Intelligently breaks down your text into concise
-              flashcards, perfect for studying
+              Leverage the power of AI to transform complex information into simple, easy-to-study flashcards, tailored for optimal retention.
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom align="center">
               Accessible Anywhere
             </Typography>
-            <Typography>
+            <Typography align="center">
               {"  "}
-              Access your flashcards from any device at any time. Study on the
-              go.
+              Stay connected to your study material wherever you go. Access your flashcards seamlessly across all your devices, anytime.
             </Typography>
           </Grid>
         </Grid>
       </Box>
       <Box sx={{ my: 6, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom align="center">
           {" "}
           Pricing
         </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={4} justifyContent="center" alignItems="stretch">
+          <Grid item xs={12} md={4}>
             <Box
               sx={{
+                height: '100%',
                 p: 3,
                 border: "1px solid",
-                borderColor: "grey.300",
+                borderColor: "#90caf9",
                 borderRadius: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                bgcolor: '#e3f2fd',
+                color: 'text.primary',
               }}
             >
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom >
                 Basic
               </Typography>
               <Typography variant="h6" gutterBottom>
@@ -147,10 +182,16 @@ export default function Home() {
           <Grid item xs={12} md={4}>
             <Box
               sx={{
+                height: '100%',
                 p: 3,
                 border: "1px solid",
-                borderColor: "grey.300",
+                borderColor: "#ffcc80",
                 borderRadius: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                bgcolor: '#ffe0b2',
+                color: 'text.primary',
               }}
             >
               <Typography variant="h5" gutterBottom>
